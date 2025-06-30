@@ -1,5 +1,5 @@
 body {
-  font-size: .875rem;
+  font-size: .75rem;
 }
 
 .feather {
@@ -100,4 +100,18 @@ body {
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+/*
+   * Content
+   */
+
+[role="main"] {
+  padding-top: 133px; /* Space for fixed navbar */
+}
+
+@media (min-width: 768px) {
+  [role="main"] {
+    padding-top: 48px; /* Space for fixed navbar */
+  }
 }
