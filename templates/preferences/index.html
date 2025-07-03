@@ -8,4 +8,33 @@
 
 <hr/>
 
+<div class="container mt-3">
+
+	{% include "partials/_messages.html" %}
+
+	<form action="{% url 'preferences.index' %}" method="post">
+		{% csrf_token %}
+	<div class="input-group">
+
+		<select name="currency" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			{% if preferences.currency %}
+			<option selected>{{preferences.currency}}</option>
+			{% else %}<option selected>Choose...</option>
+			{% endif %}
+
+			{% for currency in currency_list %}
+				<option  name="currency" value="{{currency.key}} - {{currency.value}}">{{currency.key}} - {{currency.value}}</option>			
+			{% endfor %} 
+
+		</select>
+		<div class="input-group-append">
+			<input type="submit" class="btn btn-submit btn-outline-primary" value="Save">
+			{% comment %} <button class="btn btn-submit btn-outline-primary" type="button submit" value="Save">Confirm</button> {% endcomment %}
+		</div>
+
+	</div>
+	</form>
+</div>
+
+
 {% endblock content %}
