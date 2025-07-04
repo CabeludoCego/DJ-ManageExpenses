@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 
 <div class="container mt-10">
 	<div class="row">
 		<h2>Expenses list</h2>
 
-		<-div class="col-md-9">
+		<div class="col-md-9">
 			<nav aria-label="breadcrumb">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="{% url 'expenses.index'%}">Expenses</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Library</li>
+				<li class="breadcrumb-item"><a href="{% url 'expenses.index' %}">Expenses</a></li>
+				<li class="breadcrumb-item"><a href="{% url 'expenses.create' %}">Add Expense
+					</a></li>
+				<li class="breadcrumb-item"><a href="{% url 'expenses.create-form' %}">Add Expense - DJ Form
+					</a></li>
 			</ol>
 			</nav>
 
@@ -20,7 +22,34 @@
 			<a href="{% url 'expenses.create' %}" class='btn btn-primary'>Add Expense</a>
 		</div>
 	</div>
+
+	<div class="table-responsive mt-4">
+		
+	<table class="table table-hover">
+	  	<thead class="thead-dark">
+			<tr>
+				<th scope="col">Owner</th>
+				<th scope="col">Value</th>
+				<th scope="col">Expense Date</th>
+				<th scope="col">Category</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for expense in expenses %}
+				<tr>
+					<th scope="row">{{ expense.owner }}</td>
+					<td>{{ expense.amount }}</td>
+					<td>{{ expense.date|date:'d/m/Y' }}</td>
+					<td>{{ expense.category }}</td>
+					<td>{{ expense.description }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 	
+	</div>
+
 </div>
 
 {% include 'partials/_messages.html' %}

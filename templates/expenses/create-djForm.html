@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+	<h3>Add EXPENSES - DJ FORM.</h3>
+	<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{% url 'expenses.index' %}">Expenses</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'expenses.create' %}">Add Expense
+			</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'expenses.create-form' %}">Add Expense - DJ Form
+			</a></li>
+	</ol>
+	</nav>
+
+	<div class="card">
+		<div class="card-body">
+			<form action="{% url 'expenses.create-form' %}" method='POST'>
+			{% include 'partials/_messages.html' %}
+			{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

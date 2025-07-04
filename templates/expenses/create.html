@@ -1,24 +1,58 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <div class="container mt-4">
+	<h3>Add Expenses</h3>
 	<nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{% url 'expenses.index' %}">Expenses</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Add Expense</li>
+		<li class="breadcrumb-item"><a href="{% url 'expenses.create' %}">Add Expense
+			</a></li>
+		<li class="breadcrumb-item"><a href="{% url 'expenses.create-form' %}">Add Expense - DJ Form
+			</a></li>
 	</ol>
 	</nav>
 
-	<form action="{% url 'expenses.create' %}" method='post'>
-		{% csrf_token %}
-		
-
-	</form>
+	
+	<div class="card">
+		<div class="card-body">
+			<form action="{% url 'expenses.create' %}" method='POST'>
+			{% include 'partials/_messages.html' %}
+			{% csrf_token %}
+				<div class="form-group">
+					<label for="">Amount</label>
+					<input type="number" class="form-control form-control-sm" name="amount"/>
+				</div>
+				<div class="form-group">
+					<label for="">Description</label>
+					<input type="text" class="form-control form-control-sm" name="description"/>
+				</div>				
+				<div class="form-group">
+					<label for="">Category</label>
+					<select class="form-control" name="category">
+						<option selected>Choose...</option>
+						{% for category in categories  %}
+						
+						<option name="category" value="{{category.name}}"> 
+							{{ category.name }} 
+						</option>
+						{% endfor %}
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="">Date registered</label>
+					<input type="date" class="form-control form-control-sm" name="date"/>
+				</div>
+				
+				<input type="submit" value="Submit" class="btn btn-primary"/>
+			</form>
+		</div>
+	</div>
 
 </div>
-
-
-<h1>Add Expenses</h1>
 
 {% endblock content %}
