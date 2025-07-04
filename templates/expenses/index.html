@@ -1,27 +1,29 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
 
+<div class="container mt-10">
+	<div class="row">
+		<h2>Expenses list</h2>
 
-<div class="container">
+		<-div class="col-md-9">
+			<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{% url 'expenses.index'%}">Expenses</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Library</li>
+			</ol>
+			</nav>
 
-	{% include 'partials/_messages.html' %}
-	<h1>Expenses list</h1>
-
-	<ul class="list-group">
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Ab</li>
-		<li class="list-group-item">Item Cb</li>
-	</ul>
+		</div>
+		<div class="col-md-3">
+			<a href="{% url 'expenses.create' %}" class='btn btn-primary'>Add Expense</a>
+		</div>
+	</div>
+	
 </div>
+
+{% include 'partials/_messages.html' %}
 
 {% endblock content %}
 

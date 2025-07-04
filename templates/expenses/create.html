@@ -2,6 +2,23 @@
 
 {% block content %}
 
+<div class="container mt-4">
+	<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{% url 'expenses.index' %}">Expenses</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Add Expense</li>
+	</ol>
+	</nav>
+
+	<form action="{% url 'expenses.create' %}" method='post'>
+		{% csrf_token %}
+		
+
+	</form>
+
+</div>
+
+
 <h1>Add Expenses</h1>
 
 {% endblock content %}
