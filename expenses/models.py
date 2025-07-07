@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Expense(models.Model):
+    is_active = models.BooleanField(default=True)
     amount = models.FloatField(blank=False)
     date = models.DateField(default=now)
     description = models.TextField(blank=True, null=False)
