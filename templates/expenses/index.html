@@ -33,6 +33,9 @@
 				<th scope="col">Expense Date</th>
 				<th scope="col">Category</th>
 				<th scope="col">Description</th>
+				<th></th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -41,8 +44,13 @@
 					<th scope="row">{{ expense.owner }}</td>
 					<td>{{ expense.amount }}</td>
 					<td>{{ expense.date|date:'d/m/Y' }}</td>
-					<td>{{ expense.category }}</td>
+					<td>
+						{{ expense.category }}
+					</td>
 					<td>{{ expense.description }}</td>
+					<td><a href="{% url 'expenses.update' expense.id %}" class="btn btn-outline-primary">Edit</a></td>
+					<td><a href="{% url 'expenses.archive' expense.id %}" class="btn btn-outline-warning">Archive</a></td>
+					<td><a href="{% url 'expenses.delete' expense.id %}" class="btn btn-outline-danger">Delete</a></td>
 				</tr>
 			{% endfor %}
 		</tbody>
