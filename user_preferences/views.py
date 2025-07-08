@@ -33,18 +33,3 @@ class Index(View):
         messages.success(request, 'Changes saved!')
         return render(request, 'preferences/index.html', {'currency_list': self.currency_list, 'preferences': user_preferences})
         
-
-# Create your views here.
-# def index(request):
-#     file_path = os.path.join(settings.BASE_DIR, 'currencies.json')
-    
-#     with open(file_path) as data_file:
-#         data_loaded = json.load(data_file)
-#         # for k, v in data_loaded.items():
-#         #   currency_data.append({'name': k, 'value': v})
-
-#     currency_list = data_loaded
-#     # import pdb;;
-#     # pdb.set_trace()
-#     # currency_list = []
-#     return render(request, 'preferences/index.html', {'currency_list': currency_list})
