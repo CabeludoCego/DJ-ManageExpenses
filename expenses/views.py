@@ -1,4 +1,5 @@
 from operator import is_
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -6,15 +7,30 @@ from expenses.forms import ExpenseCreateModelForm
 from .models import Expense, Category
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.paginator import Paginator
+import json
 
+# @login_required(login_url="/auth/login")
+# def search_expenses(request):
+#     if request.method == 'POST':
+#         search_str = json.loads(request.body).get('searchText')
+#         expenses = Expense.filter(amount__starts_with=search_str, owner=request.user) | Expense.filter(date__starts_with=search_str, owner=request.user) | Expense.filter(description__icontains=search_str, owner=request.user) | Expense.filter(category__icontains=search_str, owner=request.user)
+    
+#         data = expenses.values()
+#         return JsonResponse(list(data), safe = False)
+        
 @login_required(login_url="/auth/login")
 def index(request):
     user = request.user
     expenses = Expense.objects.filter(owner = user, is_active=True)
     categories = Category.objects.all()
+    paginator = Paginator(expenses,10)
+    page_number = request.GET.get('page')
+    page_obj = Paginator.get_page(paginator, page_number)
     context = {
         'expenses':expenses,
-        'categories': categories
+        'categories': categories,
+        'page_obj': page_obj
     }
     return render(request, 'expenses/index.html', context);
 
@@ -100,6 +116,7 @@ def delete(request, id):
     messages.success(request, "Expense removed!")
     return redirect('expenses.index')
 
+        
 
 # @login_required(login_url="/auth/login")
 # def update_form(request, id):
