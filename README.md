@@ -2,7 +2,19 @@
 
 Django Project based on [Cryce Truly's project](https://github.com/CryceTruly/TrulyInexpensible/tree/master).
 
+## Branch: V2 - Django Upgrades
+
+Proposal: Implement changes based on modern Django patterns and features not included in the original project.
+Motivation: The author chose a HTML/JS heavy setup, using of HTML forms and inputs, with an Ajax-based search engine. Based on my knowledge, it is possible to implement the same features using Django built-in features, with django forms and queries. 
+
 ### Proposal: A web application to manage finances in different currencies, henceforth the name, ManageFinances.
+
+Additional proposals for V2:
+
+1. Forms fully build in django
+2. Queries done in Django
+3. Analysis to implement more class based views (CBV)
+4. Study and identification of other viable Django features to be implemented.
 
 ### Resources: Expenses CRUD, Authentication, User Preferences management.
 
